@@ -1,0 +1,19 @@
+# Generated Xcode project (regenerate with `xcodegen generate`)
+ScreenOverIP.xcodeproj/
+
+# Xcode user data
+xcuserdata/
+*.xcworkspace/xcuserdata/
+project.xcworkspace/
+
+# Build products
+build/
+DerivedData/
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# macOS
+.DS_Store
