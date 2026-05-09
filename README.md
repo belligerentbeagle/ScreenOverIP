@@ -21,85 +21,18 @@ The browser side is intentionally view-only — viewers can't control your Mac.
 
 ## Quickstart
 
-1. Build and run the app (see "Setting it up" below the first time).
-2. Pick a **Display** or **Window** in the source dropdown.
-3. Press **Start streaming**.
-4. The first time, macOS asks for Screen Recording permission. Grant it, then press Start again.
-5. Open the URL the app shows — on your phone, iPad, another Mac, anything on the same Wi-Fi.
-
-There's a QR code at the bottom; point a phone camera at it and tap the link.
-
----
-
-## Setting it up
-
-### 1. Build the app (one-time)
-
-The repo doesn't ship a prebuilt `.app` — you'll need Xcode to build it once.
-
 ```bash
-brew install xcodegen          # generates the Xcode project from project.yml
-cd ~/Documents/Claude/Projects/ScreenOverIP
-./setup.sh                     # generates the project and opens Xcode
+brew install xcodegen
+./setup.sh        # generates project and opens Xcode
 ```
 
-In Xcode press `⌘R` to build and run. (If `./setup.sh` doesn't open Xcode, see [Troubleshooting](#troubleshooting).)
+Press `⌘R` in Xcode. Pick a display or window, hit **Start streaming**, grant Screen Recording when prompted. Open the URL (or scan the QR code) on any device on the same Wi-Fi.
 
-You only need to do this once — after the first build, you can launch ScreenOverIP from `~/Library/Developer/Xcode/DerivedData/.../Products/Debug/ScreenOverIP.app` like any other app, or drag it to `/Applications/`.
+**Optional add-ons:**
 
-### 2. Grant Screen Recording permission
-
-The first time you press **Start streaming**, macOS asks for permission to record your screen. Click **Allow**.
-
-If you accidentally said no, fix it under **System Settings → Privacy & Security → Screen Recording** — toggle ScreenOverIP on, then quit and relaunch the app.
-
-### 3. (Optional) Set up an extended display
-
-By default ScreenOverIP mirrors a screen you already have. To get a real *extended* desktop — a separate workspace you drag windows onto — pair it with [BetterDisplay](https://github.com/waydabber/BetterDisplay), an open-source virtual-display tool.
-
-```bash
-brew install --cask betterdisplay
-open /Applications/BetterDisplay.app
-```
-
-In BetterDisplay's menu bar icon, choose **Create new virtual screen** and pick a resolution. macOS now sees a second monitor. Open **System Settings → Displays → Arrange** to position it (left of, right of, above your real screen — wherever feels natural).
-
-In ScreenOverIP, hit **Refresh sources** and pick the new virtual display from the dropdown. Drag windows past the edge of your real display in the direction you placed it; they appear on the virtual screen, which the remote browser is now showing.
-
-To remove the virtual screen later: BetterDisplay menu → trash icon next to the dummy entry.
-
-### 4. (Optional) Public URL over the internet
-
-For viewers who aren't on your Wi-Fi — phones on cellular, friends across the country, your car's browser — flip on **Expose via Cloudflare Tunnel** in the app. It needs `cloudflared` installed once:
-
-```bash
-brew install cloudflared
-```
-
-Restart ScreenOverIP. The "Public URL" section switches from the install hint to a toggle. Enable it and press Start; after 5–15 seconds, a `https://*.trycloudflare.com` URL appears in the URL section. Type that URL into the remote device's browser and you're streaming over the public internet with HTTPS.
-
-The URL is ephemeral — every run gets a fresh one. (Stable URLs on your own domain are on the roadmap.)
-
-### 5. (Optional, but please) Password protection
-
-Public URL = anyone with the link can watch your screen. Don't do that without a password. In the **Security** section, toggle **Require password** on, type a password (or leave the field blank and the app generates a 12-character random one). The browser prompts for it on first connect.
-
-The active credentials are shown under the URL section while streaming, so you can read them off and type them into the remote device.
-
----
-
-## Using the app day-to-day
-
-Once it's set up, the flow is just:
-
-1. Launch ScreenOverIP.
-2. Pick the source you want to stream (display, window, or virtual screen).
-3. Adjust **Frame rate**, **JPEG quality**, and **Max width** to taste — see [Data usage](#data-usage) for the tradeoffs.
-4. (If you'll be sharing publicly) flip on **Require password** and **Expose via Cloudflare Tunnel**.
-5. Press **Start streaming**.
-6. Open the URL on the remote device. The viewer page has a Fullscreen button in the bottom-right.
-
-The window in the app shows you who's watching (subscriber count) and the current login credentials.
+- **Extended desktop** — `brew install --cask betterdisplay`, create a virtual screen, pick it in the dropdown.
+- **Public internet URL** — `brew install cloudflared`, restart app, toggle **Expose via Cloudflare Tunnel**. A `https://*.trycloudflare.com` URL appears within ~10s.
+- **Password** — toggle **Require password** in the Security section before sharing publicly.
 
 ---
 
@@ -153,8 +86,7 @@ cloudflared can take 5–15 seconds the first time. If it stays starting for ove
 **Cloudflare Tunnel says "tunnel error" with a non-zero exit code.**
 Make sure the version is current: `brew upgrade cloudflared`. Older builds occasionally fail to register with Cloudflare's edge.
 
-**Latency feels high.**
-On Wi-Fi, expect 100–400ms. Higher than that usually means JPEG quality is too high — drop **Max width** to 960 or **JPEG quality** to 60%.
+**High latency** — Wi-Fi baseline is 100–400ms. If higher, drop Max width to 960 or JPEG quality to 60%.
 
 ---
 
