@@ -2,7 +2,7 @@
 
 **Extend your Mac display onto ANY display over web!**
 
-Extend your screen to any browser via a URL: your car's display, your spare laptop, a public computer, your TV, anything that can open a web page. Pick a display or window, hit Start, share the URL. With one toggle you can also expose it as a `https://*.trycloudflare.com` URL that works from anywhere on the internet, password-protected.
+Your car's display, your TV, your fridge door, your spare laptop, a public computer, anything that can open a web page. Pick a display or window, hit Start, share the URL. With one toggle you can also expose it as a `https://*.trycloudflare.com` URL that works from anywhere on the internet, password-protected.
 
 ---
 
