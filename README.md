@@ -1,8 +1,8 @@
 # Screen Over IP
 
-**Extend your Mac to any display — over the web.**
+**Extend your Mac display onto any display over web.**
 
-Stream your screen to any browser via a URL: your phone, your iPad, a friend's laptop, your car's infotainment display, anything that can open a web page. Pick a display or window, hit Start, share the URL. With one toggle you can also expose it as a `https://*.trycloudflare.com` URL that works from anywhere on the internet, password-protected.
+Extend your screen to any browser via a URL: your car's display, your spare laptop, a public computer, your TV, anything that can open a web page. Pick a display or window, hit Start, share the URL. With one toggle you can also expose it as a `https://*.trycloudflare.com` URL that works from anywhere on the internet, password-protected.
 
 ---
 
